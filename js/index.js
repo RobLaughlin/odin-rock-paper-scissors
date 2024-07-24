@@ -1,7 +1,15 @@
 (() => {
-    const PROMPT_MSG = "Choose rock (1), paper (2), or scissors (3): "
+    const PROMPT_MSG = "Choose rock, paper, or scissors: "
     const CHOICES = ["rock", "paper", "scissors"];
-    const CHOICE_SET = new Set(CHOICES);
+    const CHOICES_SET = new Set(CHOICES);
+    const WIN_CONDITION = {
+        "rock": "paper",
+        "paper": "scissors",
+        "scissors": "rock"
+    };
+
+    let humanScore = 0;
+    let computerScore = 0;
 
     function getComputerChoice() {
         const choice = Math.floor(Math.random()*CHOICES.length);
@@ -9,23 +17,18 @@
     }
 
     function getHumanChoice() {
-        let validChoice = false;
-
-        while (!validChoice) {
+        // Loop until a valid prompt is entered
+        while (true) {
             const userInput = prompt(PROMPT_MSG);
-            if (!Number.isNaN(userInput)) {
-                const numInput = Number(userInput);
-                validChoice = numInput >= 1 && numInput <= CHOICES.length;
-            }
-            
-            if (validChoice) {
-                const choice = Number(userInput) - 1;
-                return CHOICES[choice];
-            }
-            else {
-                console.log(`Invalid choice '${userInput}'. Must choose a number between 1 and ${CHOICES.length} (inclusive).`)
-            }
-        }
+            const userInputLower = userInput.toLowerCase();
 
+            // Check if input is valid
+            if (CHOICES_SET.has(userInputLower)) {
+                return userInputLower;
+            }
+            console.log(`Invalid choice '${userInput}'. Choose a hand type from the following: ${CHOICES.join("|")}.`);
+        }
     }
+
+    getHumanChoice();
 })();
