@@ -1,0 +1,29 @@
+#Title {
+    margin: auto;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 48px;
+    margin-top: 48px;
+}
+
+#ChoiceContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 48px;
+    gap: 48px;
+}
+
+.choiceBtn {
+    width: 150px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 24px;
+    color: white;
+    background-color: rgb(54, 156, 251);
+    cursor: pointer;
+}
+
+.choiceBtn:hover {
+    background-color: rgb(103, 180, 252);
+}

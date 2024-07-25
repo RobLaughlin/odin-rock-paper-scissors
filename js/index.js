@@ -98,4 +98,4 @@ function playGame(numRounds) {
     }
 }
 
-playGame(NUM_ROUNDS);
+// playGame(NUM_ROUNDS);
