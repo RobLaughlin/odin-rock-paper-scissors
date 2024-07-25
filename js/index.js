@@ -50,25 +50,31 @@ function result(humanChoice, computerChoice) {
     }
 }
 
+function logMessage(msg) {
+    const elem = document.createElement("li")
+    elem.textContent = msg;
+
+    document.getElementById("GameHistory").appendChild(elem);
+}
+
 function playRound(humanChoice, computerChoice) {
     const res = result(humanChoice, computerChoice);
     
-    console.log(`CURRENT ROUND: ${currentRound}\n\n`);
-    console.log(`You chose ${humanChoice}.`);
-    console.log(`The computer chose ${computerChoice}.`);
-    console.log('\n');
-
+    logMessage(`CURRENT ROUND: ${currentRound}`);
+    logMessage(`You chose ${humanChoice}.`);
+    logMessage(`The computer chose ${computerChoice}.`);
+    
     switch (res) {
         case 0:
-            console.log(`Tie! Both players picked ${humanChoice}.`); 
+            logMessage(`Tie! Both players picked ${humanChoice}.`); 
             break;
         case 1:
-            console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+            logMessage(`You win! ${humanChoice} beats ${computerChoice}.`);
             humanScore++;
             document.getElementById("PlayerScore").textContent = `Player: ${humanScore}`;
             break;
         case 2:
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+            logMessage(`You lose! ${computerChoice} beats ${humanChoice}.`);
             computerScore++;
             document.getElementById("ComputerScore").textContent = `Computer: ${computerScore}`;
             break;
@@ -77,6 +83,7 @@ function playRound(humanChoice, computerChoice) {
 
     currentRound++;
     document.getElementById("CurrentRound").textContent = `Round: ${currentRound}`;
+    logMessage('-----------------------------');
 }
 
 function playGame(numRounds) {
