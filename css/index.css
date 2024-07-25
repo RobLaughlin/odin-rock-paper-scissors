@@ -49,3 +49,20 @@
 #GameContainer {
     margin-top: 48px;
 }
+
+#GameHistoryContainer {
+    display: flex;
+    width: 80%;
+    margin: 48px auto auto auto;
+    background-color: rgb(240, 240, 240);
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100px;
+}
+
+#GameHistory {
+    list-style-type: none;
+    padding-left: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+}
