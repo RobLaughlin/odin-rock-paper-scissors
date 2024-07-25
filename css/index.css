@@ -19,11 +19,27 @@
     border-radius: 8px;
     font-size: 24px;
     color: white;
+    background-color: lightgray;
+}
+
+.choiceBtn.enabled, #PlayAgainBtn {
+    width: 150px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 24px;
+    color: white;
     background-color: #369cfb;
+}
+
+#PlayAgainBtn {
     cursor: pointer;
 }
 
-.choiceBtn:hover {
+.choiceBtn.enabled {
+    cursor: pointer;
+}
+
+.choiceBtn:hover.enabled {
     background-color: rgb(103, 180, 252);
 }
 
@@ -57,7 +73,7 @@
     background-color: rgb(240, 240, 240);
     overflow: hidden;
     overflow-y: scroll;
-    height: 550px;
+    height: 450px;
 }
 
 #GameHistory {
@@ -65,4 +81,23 @@
     padding-left: 24px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 18px;
+}
+
+#PlayAgainContainer {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: auto;
+    margin-top: 24px;
+}
+
+#GameResultTxt {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.invisible {
+    visibility: hidden;
 }

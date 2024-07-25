@@ -81,9 +81,37 @@ function playRound(humanChoice, computerChoice) {
         default: break;
     }
 
-    currentRound++;
-    document.getElementById("CurrentRound").textContent = `Round: ${currentRound}`;
-    logMessage('-----------------------------');
+    if (currentRound == NUM_ROUNDS) {
+        logMessage('-------------------------------------');
+        logMessage("Game over!");
+
+        let gameResultText = document.getElementById("GameResultTxt");
+        if (humanScore == computerScore) {
+            logMessage("The game ends in a tie!");
+            gameResultText.textContent = "The game ends in a tie!";
+        }
+        else if (humanScore > computerScore) {
+            logMessage("Congratulations! You beat the computer!");
+            gameResultText.textContent = "Congratulations! You beat the computer!";
+        }
+        else {
+            logMessage("The computer wins this time.");
+            gameResultText.textContent = "The computer wins this time.";
+        }
+        document.getElementById("PlayAgainContainer").classList.toggle("invisible");
+
+        let choiceButtons = document.getElementsByClassName("choiceBtn");
+        for (let i = 0; i < choiceButtons.length; i++) {
+            let choiceBtn = choiceButtons[i];
+            choiceBtn.disabled = true;
+            choiceBtn.classList.toggle("enabled");
+        }
+    }
+    else {
+        currentRound++;
+        document.getElementById("CurrentRound").textContent = `Round: ${currentRound}`;
+    }
+    logMessage('-------------------------------------');
 }
 
 function playGame(numRounds) {
@@ -100,18 +128,39 @@ function playGame(numRounds) {
     
     console.log("Game over!")
     if (humanScore == computerScore) {
-        console.log("The game ends in a tie!")
+        console.log("The game ends in a tie!");
     }
     else if (humanScore > computerScore) {
         console.log("Congratulations! You beat the computer!");
     }
     else {
-        console.log("The computer wins this time.")
+        console.log("The computer wins this time.");
     }
 }
 
 function choiceBtnHandler(e) {
     playRound(e.target.value, getComputerChoice());
+}
+
+function playAgainBtnHandler() {
+    // Reset the game state
+    document.getElementById("PlayAgainContainer").classList.toggle("invisible");
+    humanScore = 0;
+    computerScore = 0;
+    currentRound = 1;
+
+    document.getElementById("PlayerScore").textContent = `Player: ${humanScore}`;
+    document.getElementById("ComputerScore").textContent = `Computer: ${computerScore}`;
+    document.getElementById("CurrentRound").textContent = `Round: ${currentRound}`;
+
+    document.getElementById("GameHistory").replaceChildren();
+
+    let choiceButtons = document.getElementsByClassName("choiceBtn");
+    for (let i = 0; i < choiceButtons.length; i++) {
+        let choiceBtn = choiceButtons[i];
+        choiceBtn.disabled = false;
+        choiceBtn.classList.toggle("enabled");
+    }
 }
 
 function addEventHandlers() {
@@ -121,6 +170,8 @@ function addEventHandlers() {
         let choiceBtn = choiceBtns[i];
         choiceBtn.addEventListener("click", choiceBtnHandler);
     }
+
+    document.getElementById("PlayAgainBtn").addEventListener("click", playAgainBtnHandler);
 }
 
 addEventHandlers();
