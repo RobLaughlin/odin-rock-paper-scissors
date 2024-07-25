@@ -114,7 +114,3 @@ function addEventHandlers() {
 }
 
 addEventHandlers();
-
-
-
-// playGame(NUM_ROUNDS);
