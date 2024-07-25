@@ -11,6 +11,8 @@ const WIN_MAP = {
 const NUM_ROUNDS = 5;
 
 let currentRound = 1;
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     const choice = Math.floor(Math.random()*CHOICES.length);
@@ -48,35 +50,35 @@ function result(humanChoice, computerChoice) {
     }
 }
 
+function playRound(humanChoice, computerChoice) {
+    const res = result(humanChoice, computerChoice);
+    
+    console.log(`CURRENT ROUND: ${currentRound}\n\n`);
+    console.log(`You chose ${humanChoice}.`);
+    console.log(`The computer chose ${computerChoice}.`);
+    console.log('\n');
+
+    switch (res) {
+        case 0:
+            console.log(`Tie! Both players picked ${humanChoice}.`); 
+            break;
+        case 1:
+            console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
+            humanScore++;
+            break;
+        case 2:
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
+            computerScore++;
+            break;
+        default: break;
+    }
+
+    currentRound++;
+}
+
 function playGame(numRounds) {
     let humanScore = 0;
     let computerScore = 0;
-
-    function playRound(humanChoice, computerChoice) {
-        const res = result(humanChoice, computerChoice);
-        
-        console.log(`CURRENT ROUND: ${currentRound}\n\n`);
-        console.log(`You chose ${humanChoice}.`);
-        console.log(`The computer chose ${computerChoice}.`);
-        console.log('\n');
-
-        switch (res) {
-            case 0:
-                console.log(`Tie! Both players picked ${humanChoice}.`); 
-                break;
-            case 1:
-                console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
-                humanScore++;
-                break;
-            case 2:
-                console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
-                computerScore++;
-                break;
-            default: break;
-        }
-
-        currentRound++;
-    }
 
     for (let i = 0; i < numRounds; i++) {
         const humanSelection = getHumanChoice();
@@ -97,5 +99,22 @@ function playGame(numRounds) {
         console.log("The computer wins this time.")
     }
 }
+
+function choiceBtnHandler(e) {
+    playRound(e.target.value, getComputerChoice());
+}
+
+function addEventHandlers() {
+    let choiceBtns = document.getElementsByClassName("choiceBtn");
+
+    for (let i = 0; i < choiceBtns.length; i++) {
+        let choiceBtn = choiceBtns[i];
+        choiceBtn.addEventListener("click", choiceBtnHandler);
+    }
+}
+
+addEventHandlers();
+
+
 
 // playGame(NUM_ROUNDS);
