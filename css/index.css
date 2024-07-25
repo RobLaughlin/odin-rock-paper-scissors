@@ -38,18 +38,14 @@
     justify-content: center;
 }
 
-#PlayerScore, #ComputerScore {
+#PlayerScore, #ComputerScore, #CurrentRound {
     margin: 0 0 0 24px;
 }
 
-#PlayerScore {
+#PlayerScore, #CurrentRound {
     margin-bottom: 8px;
 }
 
 #GameContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: calc(100vh - 125px);
+    margin-top: 48px;
 }

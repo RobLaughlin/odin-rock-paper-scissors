@@ -65,15 +65,18 @@ function playRound(humanChoice, computerChoice) {
         case 1:
             console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
             humanScore++;
+            document.getElementById("PlayerScore").textContent = `Player: ${humanScore}`;
             break;
         case 2:
             console.log(`You lose! ${computerChoice} beats ${humanChoice}.`);
             computerScore++;
+            document.getElementById("ComputerScore").textContent = `Computer: ${computerScore}`;
             break;
         default: break;
     }
 
     currentRound++;
+    document.getElementById("CurrentRound").textContent = `Round: ${currentRound}`;
 }
 
 function playGame(numRounds) {
